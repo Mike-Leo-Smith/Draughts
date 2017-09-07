@@ -18,10 +18,10 @@ public:
 private:
     Position _position;
     Position _capturePosition;
-    PathNode *_parent;
+    PathNode *_parent = nullptr;
     NodeList _children;
-    int _numberOfCaptures;
-    
+    int _numberOfCaptures = 0;
+
     void _updateNumberOfCaptures(int newCaptures);
 
 public:

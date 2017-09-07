@@ -25,7 +25,7 @@ Game::Game(Connection *connection, QWidget *parent) :
 
         if (_connection->isServer()) {
             qDebug() << _connection->isServer();
-            int randomPlayer = std::random() % 2;
+            int randomPlayer = std::rand() % 2;
             if (randomPlayer == 0) {
                 ui->draughtsView->setPlayer(Player::white);
             } else {
