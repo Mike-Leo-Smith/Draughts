@@ -2,6 +2,7 @@
 // Created by Mike Smith on 05/09/2017.
 //
 
+#include <algorithm>
 #include "Path.h"
 
 PathFinder::PathTree PathFinder::findPathsForPiece(Board board, const Position &pos)

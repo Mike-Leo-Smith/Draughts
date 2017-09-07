@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QStringList>
+#include <random>
 #include "Game.h"
 #include "ui_Draughts.h"
 
@@ -24,7 +25,7 @@ Game::Game(Connection *connection, QWidget *parent) :
 
         if (_connection->isServer()) {
             qDebug() << _connection->isServer();
-            int randomPlayer = random() % 2;
+            int randomPlayer = std::random() % 2;
             if (randomPlayer == 0) {
                 ui->draughtsView->setPlayer(Player::white);
             } else {
