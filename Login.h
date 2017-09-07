@@ -15,7 +15,7 @@ class Login : public QDialog
 
 public:
     explicit Login(QWidget *parent = 0);
-    ~Login();
+    ~Login() override;
 
     Connection *connection();
 

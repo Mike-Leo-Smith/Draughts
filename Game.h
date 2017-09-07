@@ -15,7 +15,7 @@ class Game : public QWidget
 
 public:
     explicit Game(Connection *cnnection, QWidget *parent = 0);
-    ~Game();
+    ~Game() override;
 
 private:
     Ui::GameWindow *ui;

@@ -5,10 +5,9 @@
 #include "ui_Login.h"
 
 Login::Login(QWidget *parent) :
-    QDialog(parent), ui(new Ui::LoginDialog)
+    QDialog(parent), ui(new Ui::LoginDialog), _connection(new Connection)
 {
     ui->setupUi(this);
-    _connection = new Connection;
     _animation = new QPropertyAnimation(this);
 
     connect(ui->serverButton, &QRadioButton::clicked, this, [this] {
@@ -61,6 +60,7 @@ Login::Login(QWidget *parent) :
 Login::~Login()
 {
     delete ui;
+    delete _animation;
 }
 
 Connection *Login::connection()
