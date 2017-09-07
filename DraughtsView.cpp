@@ -5,10 +5,7 @@
 #include "DraughtsView.h"
 
 DraughtsView::DraughtsView(QWidget *parent)
-    : QWidget(parent)
-{
-
-}
+    : QWidget(parent) {}
 
 void DraughtsView::paintEvent(QPaintEvent *event)
 {
@@ -25,8 +22,6 @@ void DraughtsView::paintEvent(QPaintEvent *event)
 
 void DraughtsView::_drawGrids()
 {
-    qDebug() << "Player" << (int)_player;
-
     QPainter painter(this);
     painter.setRenderHint(QPainter::HighQualityAntialiasing);
     painter.translate(_offset);
@@ -141,14 +136,14 @@ DraughtsView::Position DraughtsView::_convertPointToPosition(const QPointF point
     }
 }
 
-void DraughtsView::moveEnemyPiece(Position to)
+void DraughtsView::moveEnemyPiece(Position target)
 {
-    _game.selectMove(to);
+    _game.selectMove(target);
 
     if (_game.isTurnEnded()) {
         _game.startNewTurn();
     }
-    _currentPiecePosition = to;
+    _currentPiecePosition = target;
     testGameOver();
     update();
 }
@@ -200,7 +195,7 @@ void DraughtsView::testGameOver()
             if (_player == Player::black) {
                 message = "You win!";
             } else {
-                message = "You lose";
+                message = "You lose!";
             }
         } else {
             message = "Tie!";

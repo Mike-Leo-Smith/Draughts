@@ -153,7 +153,6 @@ void Draughts::_tryPromotePiece()
 bool Draughts::startNewTurn()
 {
     if (isTurnEnded()) {
-        std::cout << "Turn finished..." << std::endl;
         _currentNode = nullptr;
         _currentPlayer = (_currentPlayer == Player::white) ? Player::black : Player::white;
         _getAvailablePaths();
