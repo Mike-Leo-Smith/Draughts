@@ -1,0 +1,6 @@
+#include "Connect.h"
+
+Connect::Connect(QObject *parent) : QObject(parent)
+{
+
+}
