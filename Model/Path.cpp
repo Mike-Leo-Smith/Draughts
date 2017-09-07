@@ -47,7 +47,7 @@ bool PathFinder::_findCapturePaths(Board &board, PathNode *node, const Position 
             auto targetPos = (capturePos.*move)();
             auto capturedPiece = board.getPiece(capturePos);
 
-            // Remove the captured piece.
+            // Remove the (possibly) captured piece.
             board.removePiece(capturePos);
 
             // A piece which is able to be captured requires the square behind it to be empty.
