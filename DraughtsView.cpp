@@ -208,6 +208,7 @@ void DraughtsView::testGameOver()
 
         QMessageBox::information(this, "Result", message, QMessageBox::Ok);
         _player = (_player == Player::black) ? Player::white : Player::black;
+        _currentPiecePosition = { -1, -1 };
         _game.reset();
     }
 }

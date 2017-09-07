@@ -106,7 +106,7 @@ bool PathFinder::_findNonCapturePaths(Board &board, PathNode *root, const Positi
 }
 
 PathNode::PathNode(const Position &pos, PathNode *parent, int numberOfCaptures, const Position &captured)
-    : _position(pos), _parent(parent), _numberOfCaptures(numberOfCaptures), _capturePosition(captured) {}
+    : _position(pos), _capturePosition(captured), _parent(parent), _numberOfCaptures(numberOfCaptures) {}
 
 PathNode::~PathNode()
 {
