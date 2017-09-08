@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Sounds/Failing.wav</file>
+        <file>Sounds/Moving.wav</file>
+        <file>Sounds/Winning.wav</file>
+    </qresource>
+</RCC>

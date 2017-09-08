@@ -2,7 +2,8 @@
 #define DRAUGHTSVIEW_H
 
 #include <QWidget>
-#include <Model/Draughts.h>
+#include <QMediaPlayer>
+#include "Model/Draughts.h"
 
 class DraughtsView : public QWidget
 {
@@ -27,6 +28,10 @@ private:
     QColor _lightPieceColor = QColor(220, 250, 255);
     QColor _darkPieceColor = QColor(50, 30, 10);
 
+    QMediaPlayer *_movingSound = nullptr;
+    QMediaPlayer *_winningSound = nullptr;
+    QMediaPlayer *_losingSound = nullptr;
+
     Draughts _game;
     Player _player = Player::empty;
     Position _currentPiecePosition = { -1, -1 };
@@ -47,10 +52,13 @@ public:
 signals:
     void pieceMoved(Position to);
     void pieceSelected(Position pos);
+    void gameEnded(QString state);
 
 public slots:
     void moveEnemyPiece(Position to);
     void selectEnemyPiece(Position pos);
+    void startNewGame();
+    void endGame(QString state, QString additionalInfo = "");
 };
 
 #endif // DRAUGHTSVIEW_H

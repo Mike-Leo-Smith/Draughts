@@ -5,7 +5,16 @@
 #include "DraughtsView.h"
 
 DraughtsView::DraughtsView(QWidget *parent)
-    : QWidget(parent) {}
+    : QWidget(parent)
+{
+    _movingSound = new QMediaPlayer(this);
+    _winningSound = new QMediaPlayer(this);
+    _losingSound = new QMediaPlayer(this);
+
+    _movingSound->setMedia(QUrl("qrc:/Sounds/Moving.wav"));
+    _winningSound->setMedia(QUrl("qrc:/Sounds/Winning.wav"));
+    _losingSound->setMedia(QUrl("qrc:/Sounds/Failing.wav"));
+}
 
 void DraughtsView::paintEvent(QPaintEvent *event)
 {
@@ -139,6 +148,7 @@ DraughtsView::Position DraughtsView::_convertPointToPosition(const QPointF point
 void DraughtsView::moveEnemyPiece(Position target)
 {
     _game.selectMove(target);
+    _movingSound->play();
 
     if (_game.isTurnEnded()) {
         _game.startNewTurn();
@@ -163,6 +173,7 @@ void DraughtsView::mousePressEvent(QMouseEvent *event)
 
     if (!_game.selectPiece(position)) {
         if (_game.selectMove(position)) {
+            _movingSound->play();
             emit pieceMoved(position);
         } else {
             return;
@@ -182,30 +193,43 @@ void DraughtsView::mousePressEvent(QMouseEvent *event)
 
 void DraughtsView::testGameOver()
 {
-    QString message;
-
     if (_game.state() != GameState::inGame) {
+        QString state;
         if (_game.state() == GameState::whiteWins) {
             if (_player == Player::white) {
-                message = "You win!";
+                state = "You win!";
             } else {
-                message = "You lose!";
+                state = "You lose!";
             }
         } else if (_game.state() == GameState::blackWins) {
             if (_player == Player::black) {
-                message = "You win!";
+                state = "You win!";
             } else {
-                message = "You lose!";
+                state = "You lose!";
             }
-        } else {
-            message = "Tie!";
         }
-
-        QMessageBox::information(this, "Result", message, QMessageBox::Ok);
-        _player = (_player == Player::black) ? Player::white : Player::black;
-        _currentPiecePosition = { -1, -1 };
-        _game.reset();
+        emit gameEnded(state);
     }
+}
+
+void DraughtsView::endGame(QString state, QString additionalInfo)
+{
+    if (state == "You win!") {
+        _winningSound->play();
+    } else if (state == "You lose!") {
+        _losingSound->play();
+    }
+
+    QString message = additionalInfo + state;
+    QMessageBox::information(this, "Result", message, QMessageBox::Ok);
+}
+
+void DraughtsView::startNewGame()
+{
+    _player = (_player == Player::black) ? Player::white : Player::black;
+    _currentPiecePosition = { -1, -1 };
+    _game.reset();
+    update();
 }
 
 void DraughtsView::setPlayer(Player player)

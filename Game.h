@@ -27,7 +27,7 @@ private:
     QString _getLastMessage();
     void _displayNewMessage(QString s);
     void _decodeMessage(QString message);
-    QString _encodeMessage(QString type, QString data);
+    QString _encodeMessage(QString type, QString data = "");
 };
 
 #endif // GAME_H
