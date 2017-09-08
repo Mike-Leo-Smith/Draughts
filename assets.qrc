@@ -1,7 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>Sounds/Failing.wav</file>
-        <file>Sounds/Moving.wav</file>
         <file>Sounds/Winning.wav</file>
+        <file>Sounds/Moving.mp3</file>
+        <file>Sounds/Selecting.mp3</file>
+        <file>Sounds/Starting.wav</file>
     </qresource>
 </RCC>

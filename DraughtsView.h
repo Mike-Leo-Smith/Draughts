@@ -31,6 +31,8 @@ private:
     QMediaPlayer *_movingSound = nullptr;
     QMediaPlayer *_winningSound = nullptr;
     QMediaPlayer *_losingSound = nullptr;
+    QMediaPlayer *_selectingSound = nullptr;
+    QMediaPlayer *_startingSound = nullptr;
 
     Draughts _game;
     Player _player = Player::empty;

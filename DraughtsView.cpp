@@ -10,10 +10,14 @@ DraughtsView::DraughtsView(QWidget *parent)
     _movingSound = new QMediaPlayer(this);
     _winningSound = new QMediaPlayer(this);
     _losingSound = new QMediaPlayer(this);
+    _selectingSound = new QMediaPlayer(this);
+    _startingSound = new QMediaPlayer(this);
 
-    _movingSound->setMedia(QUrl("qrc:/Sounds/Moving.wav"));
+    _movingSound->setMedia(QUrl("qrc:/Sounds/Moving.mp3"));
+    _selectingSound->setMedia(QUrl("qrc:/Sounds/Selecting.mp3"));
     _winningSound->setMedia(QUrl("qrc:/Sounds/Winning.wav"));
     _losingSound->setMedia(QUrl("qrc:/Sounds/Failing.wav"));
+    _startingSound->setMedia(QUrl("qrc:/Sounds/Starting.wav"));
 }
 
 void DraughtsView::paintEvent(QPaintEvent *event)
@@ -148,6 +152,7 @@ DraughtsView::Position DraughtsView::_convertPointToPosition(const QPointF point
 void DraughtsView::moveEnemyPiece(Position target)
 {
     _game.selectMove(target);
+    _movingSound->stop();
     _movingSound->play();
 
     if (_game.isTurnEnded()) {
@@ -173,12 +178,15 @@ void DraughtsView::mousePressEvent(QMouseEvent *event)
 
     if (!_game.selectPiece(position)) {
         if (_game.selectMove(position)) {
+            _movingSound->stop();
             _movingSound->play();
             emit pieceMoved(position);
         } else {
             return;
         }
     } else {
+        _movingSound->stop();
+        _selectingSound->play();
         emit pieceSelected(position);
     }
 
@@ -229,6 +237,7 @@ void DraughtsView::startNewGame()
     _player = (_player == Player::black) ? Player::white : Player::black;
     _currentPiecePosition = { -1, -1 };
     _game.reset();
+    _startingSound->play();
     update();
 }
 

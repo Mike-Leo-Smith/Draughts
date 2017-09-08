@@ -20,6 +20,7 @@ Game::Game(Connection *connection, QWidget *parent) :
             if (!ui->sendingText->text().isEmpty()) {
                 auto sendingMessage = ui->sendingText->text();
                 _connection->sendMessage(_encodeMessage("Chat", sendingMessage));
+                ui->sendingText->clear();
                 _displayNewMessage(sendingMessage);
             }
         });

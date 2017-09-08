@@ -16,7 +16,7 @@ private:
     bool _isServer = false;
 
 public:
-    static constexpr int timeLimitation = 60000;
+    static constexpr int timeLimitation = 10000;
 
     explicit Connection(QObject *parent = nullptr);
     static QString localAddress();
