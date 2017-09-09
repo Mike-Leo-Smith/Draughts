@@ -24,28 +24,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        Game.cpp \
-    DraughtsView.cpp \
+    UI/DraughtsView.cpp \
     Model/Board.cpp \
     Model/Draughts.cpp \
     Model/Path.cpp \
     Network/Connection.cpp \
-    Login.cpp
+    Model/Player.cpp \
+    UI/GameController.cpp \
+    UI/LoginDialog.cpp
 
 HEADERS += \
-        Game.h \
-    DraughtsView.h \
+    UI/DraughtsView.h \
     Model/Board.h \
     Model/Draughts.h \
     Model/Path.h \
     Model/Piece.h \
     Model/Player.h \
     Network/Connection.h \
-    Login.h
+    CheatingConfig.h \
+    UI/GameController.h \
+    UI/LoginDialog.h
 
 FORMS += \
-        Draughts.ui \
-    Login.ui
+    UI/Draughts.ui \
+    UI/Login.ui
 
 RESOURCES += \
     assets.qrc

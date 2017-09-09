@@ -1,10 +1,10 @@
 #include <QMessageBox>
 #include <QtConcurrent/QtConcurrent>
 #include <QPropertyAnimation>
-#include "Login.h"
+#include "LoginDialog.h"
 #include "ui_Login.h"
 
-Login::Login(QWidget *parent) :
+LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent), ui(new Ui::LoginDialog), _connection(new Connection)
 {
     ui->setupUi(this);
@@ -40,6 +40,14 @@ Login::Login(QWidget *parent) :
         auto isClient = ui->clientButton->isChecked();
         setDisabled(true);
 
+#if ALLOW_CHEATING_MODE
+        if (ip == cheating_ip && port == cheating_port) {
+            setCheatingModeEnabled(true);
+            accept();
+            return;
+        }
+#endif
+
         _animation->setTargetObject(ui->connectionProgress);
         _animation->setPropertyName("value");
         _animation->setStartValue(0);
@@ -57,13 +65,13 @@ Login::Login(QWidget *parent) :
     });
 }
 
-Login::~Login()
+LoginDialog::~LoginDialog()
 {
     delete ui;
     delete _animation;
 }
 
-Connection *Login::connection()
+Connection *LoginDialog::connection()
 {
     return _connection;
 }

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QMediaPlayer>
-#include "Model/Draughts.h"
+#include "../Model/Draughts.h"
 
 class DraughtsView : public QWidget
 {
@@ -28,15 +28,12 @@ private:
     QColor _lightPieceColor = QColor(220, 250, 255);
     QColor _darkPieceColor = QColor(50, 30, 10);
 
-    QMediaPlayer *_movingSound = nullptr;
-    QMediaPlayer *_winningSound = nullptr;
-    QMediaPlayer *_losingSound = nullptr;
-    QMediaPlayer *_selectingSound = nullptr;
-    QMediaPlayer *_startingSound = nullptr;
-
-    Draughts _game;
-    Player _player = Player::empty;
+    Board _board;
+    Player _localPlayer = Player::empty;
+    Player _currentPlayer = Player::empty;
     Position _currentPiecePosition = { -1, -1 };
+    Draughts::MoveList _availableMoves;
+    Draughts::PieceList _availablePieces;
 
     void _drawGrids();
     void _drawPieces();
@@ -48,19 +45,16 @@ public:
     explicit DraughtsView(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
-    void setPlayer(Player player);
-    void testGameOver();
+
+    void setBoard(const Board &board);
+    void setLocalPlayer(Player player);
+    void setCurrentPlayer(Player player);
+    void setCurrentPiecePosition(const Position &position);
+    void setAvailableMoves(const Draughts::MoveList moves);
+    void setAvailablePieces(const Draughts::PieceList pieces);
 
 signals:
-    void pieceMoved(Position to);
-    void pieceSelected(Position pos);
-    void gameEnded(QString state);
-
-public slots:
-    void moveEnemyPiece(Position to);
-    void selectEnemyPiece(Position pos);
-    void startNewGame();
-    void endGame(QString state, QString additionalInfo = "");
+    void clickedOnBoard(Position position);
 };
 
 #endif // DRAUGHTSVIEW_H

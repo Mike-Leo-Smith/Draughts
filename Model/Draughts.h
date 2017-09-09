@@ -16,7 +16,8 @@ public:
     enum class GameState {
         whiteWins,
         blackWins,
-        inGame
+        inGame,
+        draw,
     };
 
     using PathList = std::vector<Path>;
@@ -53,9 +54,9 @@ public:
     bool isTurnEnded() const;
     bool startNewTurn();
     const Board &board() const;
+    void endGame(GameState state);
     GameState state() const;
-    Player player() const;
-
+    Player currentPlayer() const;
 };
 
 #endif  // DRAUGHTS_DRAUGHTS_H

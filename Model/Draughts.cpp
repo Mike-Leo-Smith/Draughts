@@ -154,18 +154,18 @@ bool Draughts::startNewTurn()
 {
     if (isTurnEnded()) {
         _currentNode = nullptr;
-        _currentPlayer = (_currentPlayer == Player::white) ? Player::black : Player::white;
+        _currentPlayer = PlayerHelper::opponent(_currentPlayer);
         _getAvailablePaths();
         _getAvailablePieces();
         if (_availablePaths.empty()) {
-            _gameState = (_currentPlayer == Player::white) ? GameState::blackWins : GameState::whiteWins;
+            endGame(_currentPlayer == Player::white ? GameState::blackWins : GameState::whiteWins);
         }
         return true;
     }
     return false;
 }
 
-Player Draughts::player() const
+Player Draughts::currentPlayer() const
 {
     return _currentPlayer;
 }
@@ -173,6 +173,11 @@ Player Draughts::player() const
 const Board &Draughts::board() const
 {
     return _board;
+}
+
+void Draughts::endGame(GameState state)
+{
+    _gameState = state;
 }
 
 Draughts::GameState Draughts::state() const

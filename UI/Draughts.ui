@@ -80,17 +80,13 @@
     </layout>
    </item>
   </layout>
-  <zorder>draughtsView</zorder>
-  <zorder>drawButton</zorder>
-  <zorder>line</zorder>
-  <zorder>draughtsView</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
    <class>DraughtsView</class>
    <extends>QWidget</extends>
-   <header>DraughtsView.h</header>
+   <header>UI/DraughtsView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

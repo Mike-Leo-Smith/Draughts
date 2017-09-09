@@ -1,14 +1,14 @@
 #include <QApplication>
 #include <QDebug>
 #include "Network/Connection.h"
-#include "Game.h"
-#include "Login.h"
+#include "GameController.h"
+#include "LoginDialog.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Login login;
+    LoginDialog login;
     login.exec();
     if (login.result() == QDialog::Rejected) {
         exit(-1);
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     auto *connection = login.connection();
 
-    Game w(connection);
+    GameController w(connection);
     w.show();
 
     return a.exec();
