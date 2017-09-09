@@ -12,6 +12,7 @@ enum class PieceType {
 };
 
 using PieceColor = Player;
+using PieceHelper = PlayerHelper;
 
 struct Piece {
     PieceColor color;

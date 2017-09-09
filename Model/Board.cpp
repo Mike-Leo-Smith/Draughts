@@ -4,9 +4,10 @@
 
 #include "Board.h"
 
-bool Board::isInBoard(const Board::Position &pos)
+bool Board::isPositionValid(const Board::Position &pos)
 {
-    return pos.row >= 0 && pos.row < numberOfRows && pos.col >= 0 && pos.col < numberOfColumns;
+    return pos.row >= 0 && pos.row < numberOfRows && pos.col >= 0 && pos.col < numberOfColumns
+            && pos.row % 2 != pos.col % 2;
 }
 
 void Board::setupBoard()
@@ -56,7 +57,7 @@ void Board::removePiece(const Board::Position &pos)
 
 bool Board::isEmpty(const Board::Position &pos) const
 {
-    return isInBoard(pos) && getPiece(pos).color == PieceColor::empty;
+    return isPositionValid(pos) && getPiece(pos).color == PieceColor::empty;
 }
 
 // Assumed that the row and col are valid, and that the piece exists.

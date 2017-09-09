@@ -5,10 +5,7 @@
 #include <iostream>
 #include "Draughts.h"
 
-Draughts::Draughts()
-{
-    reset();
-}
+Draughts::Draughts() {}
 
 void Draughts::reset()
 {
@@ -111,7 +108,7 @@ void Draughts::_clearAvailablePaths()
 
 void Draughts::_makeMove(const Position &curr, const Position &next, const Position &capture)
 {
-    if (_board.isInBoard(capture)) {
+    if (_board.isPositionValid(capture)) {
         _board.removePiece(capture);
     }
 
@@ -153,8 +150,8 @@ void Draughts::_tryPromotePiece()
 bool Draughts::startNewTurn()
 {
     if (isTurnEnded()) {
-        _currentNode = nullptr;
         _currentPlayer = PlayerHelper::opponent(_currentPlayer);
+        _currentNode = nullptr;
         _getAvailablePaths();
         _getAvailablePieces();
         if (_availablePaths.empty()) {
@@ -163,6 +160,17 @@ bool Draughts::startNewTurn()
         return true;
     }
     return false;
+}
+
+void Draughts::loadGame(const Board &board, Player currentPlayer)
+{
+    _board = board;
+    _currentPlayer = currentPlayer;
+    _gameState = GameState::inGame;
+    _currentNode = nullptr;
+    _clearAvailableMoves();
+    _getAvailablePaths();
+    _getAvailablePieces();
 }
 
 Player Draughts::currentPlayer() const

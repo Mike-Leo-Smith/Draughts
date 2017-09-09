@@ -33,10 +33,10 @@ void DraughtsView::_drawGrids()
     painter.setPen(QPen(_innerGridColor, _innerGridLineWidth));
     for (int row = 0; row < Board::numberOfRows; row++) {
         for (int col = 0; col < Board::numberOfColumns; col++) {
-            if (row % 2 == col % 2) {
-                painter.setBrush(lightSquareBrush);
-            } else {
+            if (Board::isPositionValid({ row, col })) {
                 painter.setBrush(darkSquareBrush);
+            } else {
+                painter.setBrush(lightSquareBrush);
             }
             painter.drawRect(col * _squareLength, row * _squareLength, _squareLength, _squareLength);
         }
@@ -103,7 +103,7 @@ void DraughtsView::_drawPieces()
         }
     }
 
-    if (Board::isInBoard(_currentPiecePosition)) {
+    if (Board::isPositionValid(_currentPiecePosition)) {
         painter.setPen(QPen(_pieceEdgeColor.darker(), 5));
         painter.setBrush(Qt::NoBrush);
         painter.drawEllipse(getPieceCenter(_currentPiecePosition), _pieceRadius, _pieceRadius);

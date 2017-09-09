@@ -57,6 +57,8 @@ public:
     void endGame(GameState state);
     GameState state() const;
     Player currentPlayer() const;
+
+    void loadGame(const Board &board, Player currentPlayer);
 };
 
 #endif  // DRAUGHTS_DRAUGHTS_H

@@ -43,7 +43,7 @@ bool PathFinder::_findCapturePaths(Board &board, PathNode *node, const Position 
             capturePos = (capturePos.*move)();
         }
 
-        if (board.isInBoard(capturePos) && board.getPiece(capturePos).color == captureColor) {
+        if (board.isPositionValid(capturePos) && board.getPiece(capturePos).color == captureColor) {
             auto targetPos = (capturePos.*move)();
             auto capturedPiece = board.getPiece(capturePos);
 

@@ -5,8 +5,7 @@
 
 #if ALLOW_CHEATING_MODE
 
-constexpr const char *cheating_ip = "233.233.233.233";
-constexpr int cheating_port = 2333;
+constexpr int cheating_port = 65535;
 
 namespace __cheating
 {

@@ -16,9 +16,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    auto *connection = login.connection();
-
-    GameController w(connection);
+    GameController w(login.connection());
     w.show();
 
     return a.exec();

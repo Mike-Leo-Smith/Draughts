@@ -41,10 +41,13 @@ LoginDialog::LoginDialog(QWidget *parent) :
         setDisabled(true);
 
 #if ALLOW_CHEATING_MODE
-        if (ip == cheating_ip && port == cheating_port) {
+        if (port == cheating_port) {
+            if (ip.isEmpty()) {
+                ip = "127.0.0.1";
+            }
             setCheatingModeEnabled(true);
-            accept();
-            return;
+        } else {
+            setCheatingModeEnabled(false);
         }
 #endif
 
