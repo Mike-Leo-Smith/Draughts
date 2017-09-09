@@ -2,7 +2,6 @@
 #define DRAUGHTSVIEW_H
 
 #include <QWidget>
-#include <QMediaPlayer>
 #include "../Model/Draughts.h"
 
 class DraughtsView : public QWidget

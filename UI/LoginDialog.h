@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QPropertyAnimation>
 #include "Network/Connection.h"
-
 #include "CheatingConfig.h"
 
 namespace Ui {

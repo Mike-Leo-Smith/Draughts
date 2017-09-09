@@ -2,14 +2,13 @@
 #define GAME_H
 
 #include <QWidget>
-#include <Network/Connection.h>
-#include <QReadWriteLock>
 #include <QString>
 #include <QStringList>
 #include <QMediaPlayer>
 #include <QMap>
 
 #include "../Model/Draughts.h"
+#include "../Network/Connection.h"
 #include "../CheatingConfig.h"
 
 namespace Ui {
