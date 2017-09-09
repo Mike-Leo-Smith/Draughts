@@ -6,5 +6,6 @@
         <file>Sounds/Selecting.mp3</file>
         <file>Sounds/Starting.wav</file>
         <file>Sounds/Draw.wav</file>
+        <file>Sounds/Background.mp3</file>
     </qresource>
 </RCC>

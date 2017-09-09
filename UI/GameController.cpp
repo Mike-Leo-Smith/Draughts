@@ -12,6 +12,7 @@ GameController::GameController(Connection *connection, QWidget *parent) :
     ui->setupUi(this);
 
     _loadSounds();
+    _sounds["Background"]->play();
 
     if (_connection->isServer()) {
         auto randomPlayer = PlayerHelper::random();
@@ -52,6 +53,7 @@ void GameController::_loadSounds()
     addSound("Losing", "qrc:/Sounds/Failing.wav");
     addSound("Starting", "qrc:/Sounds/Starting.wav");
     addSound("Draw", "qrc:/Sounds/Draw.wav");
+    addSound("Background", "qrc:/Sounds/Background.mp3");
 }
 
 void GameController::_updateView(const Position &currPos)
