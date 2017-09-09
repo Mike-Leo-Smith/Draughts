@@ -51,6 +51,7 @@ void GameController::_loadSounds()
     addSound("Winning", "qrc:/Sounds/Winning.wav");
     addSound("Losing", "qrc:/Sounds/Failing.wav");
     addSound("Starting", "qrc:/Sounds/Starting.wav");
+    addSound("Draw", "qrc:/Sounds/Draw.wav");
 }
 
 void GameController::_updateView(const Position &currPos)
