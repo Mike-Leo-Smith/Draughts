@@ -1,11 +1,13 @@
 #include <QApplication>
 #include <QDebug>
 #include "Network/Connection.h"
-#include "GameController.h"
-#include "LoginDialog.h"
+#include "UI/GameController.h"
+#include "UI/LoginDialog.h"
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QApplication a(argc, argv);
 
     LoginDialog login;
