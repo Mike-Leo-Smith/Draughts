@@ -62,11 +62,11 @@ void GameController::keyPressEvent(QKeyEvent *event)
         auto piece = _editableBoard.getPiece(_currentPosition);
         auto key = event->key();
         switch (key) {
-        case Qt::Key_E: piece.color = PieceColor::empty; break;
+        case Qt::Key_N: piece.type = PieceType::normal; break;
         case Qt::Key_B: piece.color = PieceColor::black; break;
         case Qt::Key_W: piece.color = PieceColor::white; break;
-        case Qt::Key_C: piece.type = PieceType::crowned; break;
-        case Qt::Key_N: piece.type = PieceType::normal; break;
+        case Qt::Key_E: piece.color = PieceColor::empty; piece.type = PieceType::normal; break;
+        case Qt::Key_C: if (piece.color != PieceColor::empty) piece.type = PieceType::crowned; break;
         default: break;
         }
         _editableBoard.placePiece(_currentPosition, piece);

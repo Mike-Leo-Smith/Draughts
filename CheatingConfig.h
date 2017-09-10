@@ -5,7 +5,7 @@
 
 #if ALLOW_CHEATING_MODE
 
-constexpr int cheating_port = 65535;
+constexpr int cheatingPort = 65535;
 
 namespace __cheating
 {
